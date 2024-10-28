@@ -2,7 +2,9 @@ package com.example.fastcampusmysql.domain.member.service;
 
 import com.example.fastcampusmysql.domain.member.dto.RegisterMemberCommand;
 import com.example.fastcampusmysql.domain.member.entity.Member;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberWriteService {
     public void create(RegisterMemberCommand command){
         /*
