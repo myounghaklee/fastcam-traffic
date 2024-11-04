@@ -36,7 +36,7 @@ public class MemberRepository {
                 .createAt(resultSet.getObject("createdAt", LocalDateTime.class))
                 .build();
         var member = namedParameterJdbcTemplate.queryForObject(sql, param, rowMapper);
-        return Optional.ofNullable(member)
+        return Optional.ofNullable(member);
     }
     public Member insert(Member member){
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(namedParameterJdbcTemplate.getJdbcTemplate())
