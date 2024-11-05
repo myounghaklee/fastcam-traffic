@@ -28,6 +28,12 @@ public class Member {
         this.createAt = createAt==null ? LocalDateTime.now() :createAt;
     }
 
+    public void changeNicname(String other){
+        Objects.requireNonNull(other);
+        validateNickname(other);
+        nickname = other;
+    }
+
     void validateNickname(String nickname){
         Assert.isTrue(nickname.length() <= NAME_MAX_LENGTH, "최대길이를 초과할 수 없습니다.");
     }

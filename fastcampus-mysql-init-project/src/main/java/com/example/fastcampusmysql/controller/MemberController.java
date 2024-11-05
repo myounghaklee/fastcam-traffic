@@ -17,11 +17,12 @@ public class MemberController {
     private final MemberReadService memberReadService;
 
     @PostMapping("/members")
-    public void register(@RequestBody RegisterMemberCommand command){
+    public void register(@RequestBody RegisterMemberCommand command) {
         memberWriteService.create(command);
     }
+
     @GetMapping("/members/{id}")
-    public MemberDto getMember(@PathVariable Long id){
+    public MemberDto getMember(@PathVariable Long id) {
         return memberReadService.getMember(id);
     }
 
