@@ -28,10 +28,10 @@ public class Member {
         this.createAt = createAt==null ? LocalDateTime.now() :createAt;
     }
 
-    public void changeNicname(String other){
-        Objects.requireNonNull(other);
-        validateNickname(other);
-        nickname = other;
+    public void changeNickname(String toNickname){
+        Objects.requireNonNull(toNickname);
+        validateNickname(toNickname);
+        nickname = toNickname;
     }
 
     void validateNickname(String nickname){
