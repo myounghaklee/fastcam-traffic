@@ -1,6 +1,9 @@
 package com.example.fastcampusmysql.domain.member.repository;
 
+package com.example.fastcampusmysql.domain.member.repository;
+
 import com.example.fastcampusmysql.domain.member.entity.Member;
+import com.example.fastcampusmysql.domain.member.entity.MemberNickNameHistory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -17,9 +20,18 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
-public class MemberRepository {
+public class MemberNicknameHistoryRepository {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private static final String TABLE = "Member";
+    private static final String TABLE = "MemberNicknameHistory";
+
+    static final RowMapper<MemberNickNameHistory> rowMapper = (ResultSet resultSet, int rowNum)->
+            MemberNickNameHistory
+                    .builder()
+                    .id(resultSet.getLong("id"))
+                    .memberId(resultSet.getLong("memberId"))
+                    .nickname(resultSet.getString("nickname"))
+                    .createdAt(resultSet.getObject("createdAt", LocalDateTime.class))
+                    .build();
     public Member save (Member member){
         return member;
     }
