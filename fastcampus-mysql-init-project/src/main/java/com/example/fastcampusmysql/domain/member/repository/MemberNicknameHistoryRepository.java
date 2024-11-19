@@ -1,7 +1,5 @@
 package com.example.fastcampusmysql.domain.member.repository;
 
-package com.example.fastcampusmysql.domain.member.repository;
-
 import com.example.fastcampusmysql.domain.member.entity.Member;
 import com.example.fastcampusmysql.domain.member.entity.MemberNickNameHistory;
 import lombok.RequiredArgsConstructor;
