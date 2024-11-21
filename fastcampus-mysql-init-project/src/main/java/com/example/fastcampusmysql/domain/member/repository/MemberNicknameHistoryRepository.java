@@ -1,5 +1,6 @@
 package com.example.fastcampusmysql.domain.member.repository;
 
+import com.example.fastcampusmysql.domain.member.dto.MemberNicknameHistoryDto;
 import com.example.fastcampusmysql.domain.member.entity.Member;
 import com.example.fastcampusmysql.domain.member.entity.MemberNickNameHistory;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class MemberNicknameHistoryRepository {
         return member;
     }
 
-    public Optional<Member> findById(Long id){
+    public Optional<MemberNicknameHistoryDto> findById(Long id){
         var sql = String.format("SELECT * FROM %s WHERE id = :id", TABLE);
         var param = new MapSqlParameterSource().addValue("id", id);
         RowMapper<Member> rowMapper = (ResultSet resultSet, int rowNum ) -> Member

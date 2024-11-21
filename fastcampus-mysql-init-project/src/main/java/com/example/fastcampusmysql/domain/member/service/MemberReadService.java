@@ -5,6 +5,7 @@ import com.example.fastcampusmysql.domain.member.dto.MemberNicknameHistoryDto;
 import com.example.fastcampusmysql.domain.member.entity.Member;
 import com.example.fastcampusmysql.domain.member.entity.MemberNickNameHistory;
 import com.example.fastcampusmysql.domain.member.repository.MemberNicknameHistoryRepository;
+import com.example.fastcampusmysql.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class MemberReadService {
-    private final MemberNicknameHistoryRepository memberRepository;
+    private final MemberRepository memberRepository;
+    private final MemberNicknameHistoryRepository memberNicknameHistoryRepository;
+
     public MemberDto getMember(Long id) {
         var member = memberRepository.findById(id).orElseThrow();
 
@@ -21,7 +24,11 @@ public class MemberReadService {
     }
 
     public List<MemberNicknameHistoryDto> getNicknameHistories(Long memberId){
-        
+        return memberNicknameHistoryRepository
+                .findById(memberId)
+                .stream()
+                .map(this::toDto)
+                .toList();
     }
 
     public MemberDto toDto(Member member){
