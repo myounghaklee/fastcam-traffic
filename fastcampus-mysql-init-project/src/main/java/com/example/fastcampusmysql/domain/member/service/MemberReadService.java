@@ -27,7 +27,7 @@ public class MemberReadService {
         return memberNicknameHistoryRepository
                 .findById(memberId)
                 .stream()
-                .map(this::toDto)
+                .map(history -> toDto(history))
                 .toList();
     }
 

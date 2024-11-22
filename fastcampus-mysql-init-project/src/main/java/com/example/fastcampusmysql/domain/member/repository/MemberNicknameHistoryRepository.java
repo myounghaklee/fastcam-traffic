@@ -38,7 +38,7 @@ public class MemberNicknameHistoryRepository {
     public Optional<MemberNicknameHistoryDto> findById(Long id){
         var sql = String.format("SELECT * FROM %s WHERE id = :id", TABLE);
         var param = new MapSqlParameterSource().addValue("id", id);
-        RowMapper<Member> rowMapper = (ResultSet resultSet, int rowNum ) -> Member
+        RowMapper<MemberNicknameHistoryDto> rowMapper = (ResultSet resultSet, int rowNum ) -> Member
                 .builder()
                 .id(resultSet.getLong("id"))
                 .email(resultSet.getString("email"))
