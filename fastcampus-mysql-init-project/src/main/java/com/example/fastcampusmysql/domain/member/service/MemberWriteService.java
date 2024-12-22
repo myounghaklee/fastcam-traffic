@@ -38,5 +38,6 @@ public class MemberWriteService {
         member.changeNickname(nickname);
         memberRepository.save(member);
         //TODO: save teh change history
+        savedMemberNicknameHistory(member);
     }
 }
