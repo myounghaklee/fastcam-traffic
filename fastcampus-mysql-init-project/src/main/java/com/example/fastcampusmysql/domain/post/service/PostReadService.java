@@ -19,11 +19,11 @@ public class PostReadService {
     private final PostRepository postRepository;
 
     @Transactional
-    public List<DailyPostCount> getDailyPostCount(DailyPostCountRequest request){
+    public List<DailyPostCount> getDailyPostCount(DailyPostCountRequest request) {
         return postRepository.groupByCreatedDate(request);
     }
 
-    public Page<Post> getPosts(Long memberId, Pageable pageRequest){
+    public Page<Post> getPosts(Long memberId, Pageable pageRequest) {
         return postRepository.findAllByMemberId(memberId, pageRequest);
     }
 }
