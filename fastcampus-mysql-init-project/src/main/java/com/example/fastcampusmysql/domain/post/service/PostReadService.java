@@ -30,7 +30,7 @@ public class PostReadService {
     }
 
 
-    public PageCursor<Post> getPosts(Long memberId, CursorRequest cursorRequest){
+    public PageCursor<Post> getPosts(Long memberId, CursorRequest cursorRequest) {
         var posts = findAllBy(memberId, cursorRequest);
         var nextKey = posts.stream()
                 .mapToLong(Post::getId)
@@ -38,10 +38,11 @@ public class PostReadService {
                 .orElse(CursorRequest.NONE_KEY);
         return new PageCursor<>(CursorRequest.next(nextKey), posts);
     }
-    public List<Post> findAllBy(Long memberId, CursorRequest cursorRequest){
-        if(cursorRequest.hasKey()){
-            var post = postRepository.findAllByLessThanIdANdMemberIdAndOrderByIdDesc(cursorRequest.key(),memberId, cursorRequest.size());
-        }else {
+
+    public List<Post> findAllBy(Long memberId, CursorRequest cursorRequest) {
+        if (cursorRequest.hasKey()) {
+            var post = postRepository.findAllByLessThanIdANdMemberIdAndOrderByIdDesc(cursorRequest.key(), memberId, cursorRequest.size());
+        } else {
             var post = postRepository.findAllByMemberIdAndOrderByIdDesc(memberId, cursorRequest.size());
         }
         return postRepository.findAllByMemberIdAndOrderByIdDesc(memberId, cursorRequest.size());
