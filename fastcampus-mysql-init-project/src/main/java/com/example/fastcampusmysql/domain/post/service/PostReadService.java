@@ -30,8 +30,8 @@ public class PostReadService {
     }
 
 
-    public PageCursor<Post> getPosts(Long memberId, CursorRequest cursorRequest) {
-        var posts = findAllBy(memberId, cursorRequest);
+    public PageCursor<Post> getPosts(List<Long> followingMemberIds, CursorRequest cursorRequest) {
+        var posts = findAllBy(followingMemberIds, cursorRequest);
         var nextKey = posts.stream()
                 .mapToLong(Post::getId)
                 .min()
@@ -47,5 +47,4 @@ public class PostReadService {
         }
         return postRepository.findAllByMemberIdAndOrderByIdDesc(memberId, cursorRequest.size());
     }
-
 }
