@@ -24,7 +24,9 @@ public class GetTimelinePostsUsecase {
     }
 
     public PageCursor<Post> executeByTimeLine(Long memberId, CursorRequest cursorRequest){
+        var followings = followReadService.getFollowings(memberId);
+        var followingMemberIds = followings.stream().map(Follow::getToMemberId).toList();
+        return postReadService.getPosts(followingMemberIds, cursorRequest);
 
-        
     }
 }
